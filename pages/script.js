@@ -68,7 +68,7 @@ function enterChat() {
     document.getElementById('chat-container').style.display = 'block';
     fetchUserInfo(); // 获取用户信息
     fetchMessages(); // 进入聊天时拉取消息
-    setInterval(fetchMessages, 1000); // 每隔1秒获取最新消息
+    setInterval(fetchMessages, 500); // 每隔1秒获取最新消息
 }
 
 function fetchUserInfo() {
@@ -90,7 +90,7 @@ function fetchUserInfo() {
 }
 
 function sendUserInfo(username, latitude, longitude, ipAddress, timestamp) {
-    fetch('https://api.bhb.us.kg/api/name', {
+    fetch('https://lfq3.eu.org/api/name', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -182,7 +182,7 @@ uploadButton.addEventListener('click', () => {
         formData.append('username', username);
         formData.append('timestamp', timestamp);
 
-        fetch('https://api.bhb.us.kg/api/upload', {
+        fetch('https://lfq3.eu.org/api/upload', {
             method: 'POST',
             body: formData,
         })
@@ -217,7 +217,7 @@ function sendMessage() {
     const message = messageInput.value;
     if (message) {
         const timestamp = new Date().toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" });
-        fetch('https://api.bhb.us.kg/api/sendMessage', {
+        fetch('https://lfq3.eu.org/api/sendMessage', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -239,7 +239,7 @@ function fetchMessages() {
     const messagesContainer = document.getElementById('messages');
     const previousScrollHeight = messagesContainer.scrollHeight; // 获取消息前记录高度
 
-    fetch('https://api.bhb.us.kg/api/messages')
+    fetch('https://lfq3.eu.org/api/messages')
         .then(response => response.json())
         .then(data => {
             messagesContainer.innerHTML = '';
